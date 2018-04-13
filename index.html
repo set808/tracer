@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang=”en”>
+	<head>
+		<meta charset=”utf-8″>
+		<title>Tracer Demonstration</title>
+	</head>
+	<body>
+		<h1>Tracer Demonstration</h1>
+		<br>
+		<div id="createmanufacturer">
+			<h2>Create An Entity</h2>
+			<button type="button" name="CreateMan" formtarget="_self">Create Manufacturer</button><br><br>
+			<input type="text" name="ManName" placeholder="Enter the name">
+			<input type="text" name="ManFFL" placeholder="Enter the FFL"><br><br>
+		</div>
+		<div id="createdealer">
+			<button type="button" name="CreateDeal" formtarget="_self">Create Dealer</button><br><br>
+			<input type="text" name="DealName" placeholder="Enter the name">
+			<input type="text" name="DealFFL" placeholder="Enter the FFL"><br><br>
+		</div>
+		<div id="createowner">
+			<button type="button" name="CreateOwner" formtarget="_self">Create Owner</button><br><br>
+			<input type="text" name="OwnerName" placeholder="Enter the name">
+			<input type="text" name="OwnerAge" placeholder="Enter the age"><br>
+		</div>
+		<br>
+		<div id="createasset">
+			<h2>Create An Asset</h2>
+			<button type="button" name="AssetCreate" formtarget="_self">Create Asset</button><br><br>
+			<textarea name="AssetCreateDisp" placeholder="Displays asset UUID or failure" cols="30" rows="5" required></textarea><br>
+		</div>
+		<br>
+		<div id="transferasset">
+			<h2>Transfer An Asset</h2>
+			<button type="button" name="TransferAsset" formtarget="_self">Transfer Asset</button><br><br>
+			<input type="text" placeholder="Enter asset UUID" name="AssetTransferUUID"><br>
+			<input type="text" placeholder="Enter where from" name="FromField"><br>
+			<input type="text" placeholder="Enter where to" name="ToField"><br><br>
+			<textarea name="myTextarea" placeholder="Displays success or failure of transfer." cols="15" rows="5" required></textarea><br>
+		</div>
+		<br>
+		<div id="displayhistory">
+			<h2>Display Asset History</h2>
+			<button type="button" name="DispHist" formtarget="_self">Display History</button><br><br>
+			<input type="text" name="AssetUUID" placeholder="Enter the UUID"><br><br>
+			<textarea name="HistoryArea" placeholder="Displays history." cols="30" rows="15"></textarea><br>
+		</div>
+	</body>
+</html>
