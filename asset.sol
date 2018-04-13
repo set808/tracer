@@ -13,11 +13,11 @@ contract guns {
     mapping (address => asset) assets;
     address[] public assetAccts;
     
-    function setAsset(address _address, uint _serial, string _manufact, string _owner, bytes32 _uuid, bool _initialized) public {
+    function setAsset(address _address, uint _serial, string _manufact, string _owner, bool _initialized) public {
         var asset = assets[_address];
         
         asset.serial = _serial;
-        asset.uuid = _uuid;
+        asset.uuid = keccak256(_address);
         asset.owner = _owner;
         asset.manufact = _manufact;
         asset.initialized = _initialized;
