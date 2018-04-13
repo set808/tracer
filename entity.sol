@@ -1,67 +1,91 @@
 pragma solidity ^0.4.2;
 
-contract Entity 
+contract Owner
 {
-    string private name;
-    address addy = this;
-    
-    function setName(string new_name) external
+    struct owner
     {
-        name = new_name;
+        string name;
+        uint age;
+        
     }
     
-    function getName() constant public returns (string)
+    mapping (address => owner) owners;
+    address[] public ownerAccts;
+    
+    function setOwner(string _name, uint _age) public
     {
-        return (name);
+        owner storage this_owner = owners[this];
+        this_owner.name = _name;
+        this_owner.age = _age;
+        
+        ownerAccts.push(this) + 1;
     }
     
-    function getAddress() constant public returns (address)
-    {
-        return (addy);
+    function getOwners() view public returns(address[]) {
+        return ownerAccts;
+    }
+    
+    function getOwner(address _address) view public returns(string, uint) {
+        return (owners[_address].name, owners[_address].age);
     }
 }
 
-contract Manufacturer is Entity
+contract Dealer
 {
-    string private ffl;
-    
-    function setFfl(string new_ffl) external
+    struct dealer
     {
-        ffl = new_ffl;
+        string name;
+        bool ffl;
+        
     }
     
-    function getFfl() constant public returns (string)
+    mapping (address => dealer) dealers;
+    address[] public dealerAccts;
+    
+    function setDealer(string _name, bool _ffl) public
     {
-        return (ffl);
+        dealer storage this_dealer = dealers[this];
+        this_dealer.name = _name;
+        this_dealer.ffl = _ffl;
+        
+        dealerAccts.push(this) + 1;
+    }
+    
+    function getDealers() view public returns(address[]) {
+        return dealerAccts;
+    }
+    
+    function getDealer(address _address) view public returns(string, uint) {
+        return (dealers[_address].name, dealers[_address].ffl);
     }
 }
 
-contract Dealer is Entity
+contract Manufacturer
 {
-    string private ffl;
-    
-    function setFfl(string new_ffl) external
+    struct manufacturer
     {
-        ffl = new_ffl;
+        string name;
+        bool ffl;
+        
     }
     
-    function getFfl() constant public returns (string)
-    {
-        return (ffl);
-    }
-}
-
-contract Owner is Entity
-{
-    uint private age;
+    mapping (address => manufacturer) manufacturers;
+    address[] public manufacturerAccts;
     
-    function setAge(uint new_age) external
+    function setManufacturer(string _name, bool _ffl) public
     {
-        age = new_age;
+        manufacturer storage this_manufacturer = manufacturers[this];
+        this_manufacturer.name = _name;
+        this_manufacturer.ffl = _ffl;
+        
+        manufacturerAccts.push(this) + 1;
     }
     
-    function getAge() constant public returns (uint)
-    {
-        return (age);
+    function getManufacturers() view public returns(address[]) {
+        return manufacturerAccts;
+    }
+    
+    function getManufacturer(address _address) view public returns(string, uint) {
+        return (manufacturers[_address].name, manufacturers[_address].age);
     }
 }
