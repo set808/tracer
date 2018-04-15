@@ -3,6 +3,7 @@
 	<head>
 		<meta charset=”utf-8″>
 		<title>Tracer Demonstration</title>
+		<script src="./node_modules/web3/dist/web3.min.js"></script>
 	</head>
 	<body>
 		<h1>Tracer Demonstration</h1>
@@ -45,5 +46,19 @@
 			<input type="text" name="AssetUUID" placeholder="Enter the UUID"><br><br>
 			<textarea name="HistoryArea" placeholder="Displays history." cols="30" rows="15"></textarea><br>
 		</div>
+
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+		<script>
+		  if (typeof web3 !== 'undefined'){
+		  web3 = new Web3(web3.currentProvider);
+		  }
+		  else {
+		  web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+		  }
+		  web3.eth.defaultAccount = web3.eth.accounts[0];
+		  var "ContractName" = web3.eth.contract(ABI);
+		  var "ContractName" = "ContractName".at(ADDRESS);
+		  console.log("ContractName");
+		</script>
 	</body>
 </html>
