@@ -10,30 +10,30 @@
 		<br>
 		<div id="createmanufacturer">
 			<h2>Create An Entity</h2>
-			<button type="button" name="CreateMan" formtarget="_self">Create Manufacturer</button><br><br>
-			<input type="text" name="ManName" placeholder="Enter the name">
-			<input type="text" name="ManFFL" placeholder="Enter the FFL"><br><br>
+			<button type="button" id="CreateMan" name="CreateMan" formtarget="_self">Create Manufacturer</button><br><br>
+			<input type="text" id="ManName" name="ManName" placeholder="Enter the name">
+			<input type="text" id="ManFFL" name="ManFFL" placeholder="Enter the FFL"><br><br>
 		</div>
 		<div id="createdealer">
-			<button type="button" name="CreateDeal" formtarget="_self">Create Dealer</button><br><br>
-			<input type="text" name="DealName" placeholder="Enter the name">
-			<input type="text" name="DealFFL" placeholder="Enter the FFL"><br><br>
+			<button type="button" id="CreateDeal" name="CreateDeal" formtarget="_self">Create Dealer</button><br><br>
+			<input type="text" id="DealName" name="DealName" placeholder="Enter the name">
+			<input type="text" id="DealFFL" name="DealFFL" placeholder="Enter the FFL"><br><br>
 		</div>
 		<div id="createowner">
-			<button type="button" name="CreateOwner" formtarget="_self">Create Owner</button><br><br>
-			<input type="text" name="OwnerName" placeholder="Enter the name">
-			<input type="text" name="OwnerAge" placeholder="Enter the age"><br>
+			<button type="button" id="CreateOwner" name="CreateOwner" formtarget="_self">Create Owner</button><br><br>
+			<input type="text" id="OwnerName" name="OwnerName" placeholder="Enter the name">
+			<input type="text" id="OwnerAge" name="OwnerAge" placeholder="Enter the age"><br>
 		</div>
 		<br>
 		<div id="createasset">
 			<h2>Create An Asset</h2>
-			<button type="button" name="AssetCreate" formtarget="_self">Create Asset</button><br><br>
+			<button type="button" id="AssetCreate" name="AssetCreate" formtarget="_self">Create Asset</button><br><br>
 			<textarea name="AssetCreateDisp" placeholder="Displays asset UUID or failure" cols="30" rows="5" required></textarea><br>
 		</div>
 		<br>
 		<div id="transferasset">
 			<h2>Transfer An Asset</h2>
-			<button type="button" name="TransferAsset" formtarget="_self">Transfer Asset</button><br><br>
+			<button type="button" id="TransferAsset" name="TransferAsset" formtarget="_self">Transfer Asset</button><br><br>
 			<input type="text" placeholder="Enter asset UUID" name="AssetTransferUUID"><br>
 			<input type="text" placeholder="Enter where from" name="FromField"><br>
 			<input type="text" placeholder="Enter where to" name="ToField"><br><br>
@@ -42,7 +42,7 @@
 		<br>
 		<div id="displayhistory">
 			<h2>Display Asset History</h2>
-			<button type="button" name="DispHist" formtarget="_self">Display History</button><br><br>
+			<button type="button" id="DispHist" name="DispHist" formtarget="_self">Display History</button><br><br>
 			<input type="text" name="AssetUUID" placeholder="Enter the UUID"><br><br>
 			<textarea name="HistoryArea" placeholder="Displays history." cols="30" rows="15"></textarea><br>
 		</div>
@@ -57,109 +57,22 @@
 				web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 			}
 			web3.eth.defaultAccount = web3.eth.accounts[0];
-			var createAssetContract = web3.eth.contract([
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_address",
-				"type": "address"
-			}
-		],
-		"name": "getAsset",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "string"
-			},
-			{
-				"name": "",
-				"type": "string"
-			},
-			{
-				"name": "",
-				"type": "bytes32"
-			},
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getAssets",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_address",
-				"type": "address"
-			},
-			{
-				"name": "_serial",
-				"type": "uint256"
-			},
-			{
-				"name": "_manufact",
-				"type": "string"
-			},
-			{
-				"name": "_owner",
-				"type": "string"
-			},
-			{
-				"name": "_initialized",
-				"type": "bool"
-			}
-		],
-		"name": "setAsset",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "assetAccts",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	}
-]);
-			var createAsset = createAssetContract.at(ADDRESS);
-			console.log("ContractName");
 			
+			
+			$("#CreateMan").click(function(){
+				var CreateManufacturer = new web3.eth.Contract([{"inputs": [{"name": "_name","type": "bytes16"},{"name": "_ffl","type": "bool"}],"payable": false,"stateMutability": "nonpayable","type": "constructor"}]);
+				CreateManufacturer.Manufacturer($("#ManName").val(), $("#ManFFL").val());
+			});
+			
+			$("#CreateDeal").click(function(){
+				var CreateDealer = new web3.eth.Contract([{"inputs": [{"name": "_name","type": "bytes16"},{"name": "_ffl","type": "bool"}],"payable": false,"stateMutability": "nonpayable","type": "constructor"},{"constant": true,"inputs": [],"name": "deal_add","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ffl","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "name","outputs": [{"name": "","type": "bytes16"}],"payable": false,"stateMutability": "view","type": "function"}]);
+				CreateDealer.Dealer($("#DealName").val(), $("#DealFFL").val());
+			});
+			
+			$("#CreateOwner").click(function(){
+				var CreateOwner = new web3.eth.Contract([{"inputs": [{"name": "_name","type": "bytes16"},{"name": "_age","type": "uint256"}],"payable": false,"stateMutability": "nonpayable","type": "constructor"},{"constant": true,"inputs": [],"name": "age","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "name","outputs": [{"name": "","type": "bytes16"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "own_add","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"}]);
+				CreateOwner.Owner($("#OwnerName").val(), $("#OwnerAge").val());
+			});
 		</script>
 	</body>
 </html>
