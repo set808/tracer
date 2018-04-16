@@ -56,7 +56,6 @@ contract Tracer
     {
         return manufacturerAccts;
     }
-    
     function getOwner(address ins) constant public returns (bytes16, uint)
     {
         return (owners[ins].name(), owners[ins].age());
@@ -67,7 +66,30 @@ contract Tracer
         {
             return true;
         }
-        
         return false;
     }
+    function transferAsset(address to, bytes32 uuid) public
+    {
+	if(!assetStore[uuid].initialized)
+	{
+		RejectTransfer(msg.sender, to, uuid, "No asset with this UUID exists");
+		return;
+    	}
+    	if(!walletStore[msg.sender][uuid])
+    	{
+		RejectTransfer(msg.sender, to, uuid, "Sender does not own this asset.");
+        	return;
+	}
+ 
+	walletStore[msg.sender][uuid] = false;
+    	walletStore[to][uuid] = true;
+    	AssetTransfer(msg.sender, to, uuid);
+	}
+
+	function getAssetByUUID(bytes32 uuid) constant returns (string, string)
+	{
+ 
+	return (assetStore[uuid].description, assetStore[uuid].manufacturer);
+ 
+	}
 }
