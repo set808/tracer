@@ -1,18 +1,18 @@
 pragma solidity ^0.4.2;
 
 contract guns {
-    
-    struct asset {
-        uint serial;
-        bytes32 uuid;
-        string owner;
-        string manufact;
-        bool initialized;
-    }
-    
+
+	struct asset {
+	       uint serial;
+               bytes32 uuid;
+               string owner;
+               string manufact;
+               bool initialized;
+    	       }
+
     mapping (address => asset) assets;
     address[] public assetAccts;
-    
+
     function setAsset(address _address, uint _serial, string _manufact, string _owner, bool _initialized) public {
         var asset = assets[_address];
         
