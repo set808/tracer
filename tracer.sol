@@ -75,14 +75,14 @@ contract Tracer
 		RejectTransfer(msg.sender, to, uuid, "No asset with this UUID exists");
 		return;
     	}
-    	if(!walletStore[msg.sender][uuid])
+    	if(!entityStore[msg.sender][uuid])
     	{
 		RejectTransfer(msg.sender, to, uuid, "Sender does not own this asset.");
         	return;
 	}
  
-	walletStore[msg.sender][uuid] = false;
-    	walletStore[to][uuid] = true;
+	entityStore[msg.sender][uuid] = false;
+    	entityStore[to][uuid] = true;
     	AssetTransfer(msg.sender, to, uuid);
 	}
 
