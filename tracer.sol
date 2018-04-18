@@ -15,6 +15,11 @@ contract Tracer
     mapping (address => Manufacturer) manufacturers;
     mapping (bytes32 => guns) assetStore;
     mapping (address => mapping(bytes32 => bool)) public entityStore;
+
+    event AssetCreate(address account, string uuid, string manufacturer);
+    event RejectCreate(address account, string uuid, string message);
+    event AssetTransfer(address from, address to, string uuid);
+    event RejectTransfer(address from, address to, string uuid, string message);
     
     function createOwner(bytes16 _name, uint _age) public
     {
