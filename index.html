@@ -8,6 +8,8 @@
 	<body>
 		<h1>Tracer Demonstration</h1>
 		<br>
+		
+		<button type="button" id="CreateTracer" name="CreateTracer" formtarget="_self">Initialize Tracer</button><br><br>
 		<div id="createmanufacturer">
 			<h2>Create An Entity</h2>
 			<button type="button" id="CreateMan" name="CreateMan" formtarget="_self">Create Manufacturer</button><br><br>
@@ -28,23 +30,26 @@
 		<div id="createasset">
 			<h2>Create An Asset</h2>
 			<button type="button" id="AssetCreate" name="AssetCreate" formtarget="_self">Create Asset</button><br><br>
-			<textarea name="AssetCreateDisp" placeholder="Displays asset UUID or failure" cols="30" rows="5" required></textarea><br>
+			<input type="text" id="AssetType" name="AssetType" placeholder="Enter the type">
+			<input type="text" id="AssetMan" name="AssetMan" placeholder="Enter the manufacturer">
+			<input type="text" id="Init" name="Init" placeholder="Initialized: T or F?">	
+			<textarea id="AssetUUID" name="AssetCreateDisp" placeholder="Displays asset UUID or failure" cols="30" rows="5" required></textarea><br>
 		</div>
 		<br>
 		<div id="transferasset">
 			<h2>Transfer An Asset</h2>
 			<button type="button" id="TransferAsset" name="TransferAsset" formtarget="_self">Transfer Asset</button><br><br>
-			<input type="text" placeholder="Enter asset UUID" name="AssetTransferUUID"><br>
-			<input type="text" placeholder="Enter where from" name="FromField"><br>
-			<input type="text" placeholder="Enter where to" name="ToField"><br><br>
-			<textarea name="myTextarea" placeholder="Displays success or failure of transfer." cols="15" rows="5" required></textarea><br>
+			<input type="text" id="TransferAssUUID" placeholder="Enter asset UUID" name="AssetTransferUUID"><br>
+			<input type="text" id="TransferFrom" placeholder="Enter where from" name="FromField"><br>
+			<input type="text" id="TransferTo" placeholder="Enter where to" name="ToField"><br><br>
+			<textarea name="myTextarea" id="TransferSuccess" placeholder="Displays success or failure of transfer." cols="15" rows="5" required></textarea><br>
 		</div>
 		<br>
 		<div id="displayhistory">
 			<h2>Display Asset History</h2>
 			<button type="button" id="DispHist" name="DispHist" formtarget="_self">Display History</button><br><br>
-			<input type="text" name="AssetUUID" placeholder="Enter the UUID"><br><br>
-			<textarea name="HistoryArea" placeholder="Displays history." cols="30" rows="15"></textarea><br>
+			<input type="text" id="AssetUUID" name="AssetUUID" placeholder="Enter the UUID"><br><br>
+			<textarea id="HistoryArea" name="HistoryArea" placeholder="Displays history." cols="30" rows="15"></textarea><br>
 		</div>
 		
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -58,21 +63,141 @@
 			}
 			web3.eth.defaultAccount = web3.eth.accounts[0];
 			
+			$("#CreateTracer").click(function(){
+				var InitializeTracer = new web3.eth.Contract([
+				{
+					"constant": true,
+					"inputs": [],
+					"name": "initialized",
+					"outputs": [
+						{
+							"name": "",
+							"type": "bool"
+						}
+					],
+					"payable": false,
+					"stateMutability": "view",
+					"type": "function"
+				},
+				{
+					"constant": true,
+					"inputs": [],
+					"name": "uuid",
+					"outputs": [
+						{
+							"name": "",
+							"type": "bytes32"
+						}
+					],
+					"payable": false,
+					"stateMutability": "view",
+					"type": "function"
+				},
+				{
+					"constant": true,
+					"inputs": [],
+					"name": "gun_type",
+					"outputs": [
+						{
+							"name": "",
+							"type": "bytes16"
+						}
+					],
+					"payable": false,
+					"stateMutability": "view",
+					"type": "function"
+				},
+				{
+					"constant": true,
+					"inputs": [
+						{
+							"name": "",
+							"type": "uint256"
+						}
+					],
+					"name": "assetAccts",
+					"outputs": [
+						{
+							"name": "",
+							"type": "address"
+						}
+					],
+					"payable": false,
+					"stateMutability": "view",
+					"type": "function"
+				},
+				{
+					"constant": true,
+					"inputs": [],
+					"name": "manufact",
+					"outputs": [
+						{
+							"name": "",
+							"type": "bytes16"
+						}
+					],
+					"payable": false,
+					"stateMutability": "view",
+					"type": "function"
+				},
+				{
+					"inputs": [
+						{
+							"name": "_address",
+							"type": "address"
+						},
+						{
+							"name": "_gun_type",
+							"type": "bytes16"
+						},
+						{
+							"name": "_manufact",
+							"type": "bytes16"
+						},
+						{
+							"name": "_initialized",
+							"type": "bool"
+						}
+					],
+					"payable": false,
+					"stateMutability": "nonpayable",
+					"type": "constructor"
+				}
+				]);
 			
+				var newTracer = InitializeTracer.at('NEW TRACER ADDRESS');
+			});
+		
+			'ENTITIES MAY NOT HAVE DISTINCT ADDRESSES THE WAY THE CODE IS WRITTEN'
 			$("#CreateMan").click(function(){
-				var CreateManufacturer = new web3.eth.Contract([{"inputs": [{"name": "_name","type": "bytes16"},{"name": "_ffl","type": "bool"}],"payable": false,"stateMutability": "nonpayable","type": "constructor"}]);
-				CreateManufacturer.Manufacturer($("#ManName").val(), $("#ManFFL").val());
+				newTracer.createManufacturer($("#ManName").val(), $("#ManFFL").val());
 			});
 			
 			$("#CreateDeal").click(function(){
-				var CreateDealer = new web3.eth.Contract([{"inputs": [{"name": "_name","type": "bytes16"},{"name": "_ffl","type": "bool"}],"payable": false,"stateMutability": "nonpayable","type": "constructor"},{"constant": true,"inputs": [],"name": "deal_add","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ffl","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "name","outputs": [{"name": "","type": "bytes16"}],"payable": false,"stateMutability": "view","type": "function"}]);
-				CreateDealer.Dealer($("#DealName").val(), $("#DealFFL").val());
+				newTracer.createDealer($("#DealName").val(), $("#DealFFL").val());
 			});
 			
 			$("#CreateOwner").click(function(){
-				var CreateOwner = new web3.eth.Contract([{"inputs": [{"name": "_name","type": "bytes16"},{"name": "_age","type": "uint256"}],"payable": false,"stateMutability": "nonpayable","type": "constructor"},{"constant": true,"inputs": [],"name": "age","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "name","outputs": [{"name": "","type": "bytes16"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "own_add","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"}]);
-				CreateOwner.Owner($("#OwnerName").val(), $("#OwnerAge").val());
+				newTracer.createOwner($("#OwnerName").val(), $("#OwnerAge").val());
 			});
+			
+			$("#AssetCreate").click(function(){
+				newTracer.createAsset($("#AssetType").val(), $("#AssetMan").val(), $("#Init").val());
+				'PASS ASSETSTORE FUNCTION WITH UUID FOR GUN UUID'
+				'RETURN UUID TO TEXTBOX'
+				$("#AssetUUID").val() = 'UUID RETURNED'
+			});
+			
+			$("#TransferAsset").click(function(){
+				'WHERE IS THE FROM INPUT?'
+				newTracer.transferAsset($("#TransferTo").val(), $("#TransferAssUUID").val());
+				$("#TransferSuccess").val() = 'Success/Fail'
+			});
+			
+			'NEED A DISPLAY HISTORY FUNCTION TO DISPLAY ADDRESS HISTORY AS A STRING'
+			$("#DispHist").click(function(){
+				$("#HistoryArea").val() = newTracer.displayHistory($("#AssetUUID").val());
+			}
 		</script>
 	</body>
 </html>
