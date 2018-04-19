@@ -73,6 +73,7 @@ contract Tracer
     }
     function transferAsset(address to, bytes32 uuid) public
     {
+<<<<<<< HEAD
 	    if(!assetStore[uuid].initialized())
 	    {
 		    RejectTransfer(msg.sender, to, uuid, "No asset with this UUID exists");
@@ -85,10 +86,25 @@ contract Tracer
 	    }
     
 	    entityStore[msg.sender][uuid] = false;
+=======
+	if(!assetStore[uuid].initialized)
+	{
+		RejectTransfer(msg.sender, to, uuid, "No asset with this UUID exists");
+		return;
+    	}
+    	if(!entityStore[msg.sender][uuid])
+    	{
+		RejectTransfer(msg.sender, to, uuid, "Sender does not own this asset.");
+        	return;
+	}
+ 
+	entityStore[msg.sender][uuid] = false;
+>>>>>>> 6f9cbb882309530b2785fef28515801a1a5ba007
     	entityStore[to][uuid] = true;
     	AssetTransfer(msg.sender, to, uuid);
 	}
 
+<<<<<<< HEAD
 	function getAssetByUUID(bytes32 uuid) constant returns (bytes16, bytes16)
 	{
  
@@ -102,4 +118,12 @@ contract Tracer
     }
     
 
+=======
+	function getAssetByUUID(bytes32 uuid) constant returns (string, string)
+	{
+ 
+	return (assetStore[uuid].description, assetStore[uuid].manufacturer);
+ 
+	}
+>>>>>>> 6f9cbb882309530b2785fef28515801a1a5ba007
 }
