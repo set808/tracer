@@ -1,4 +1,3 @@
-pragma solidity ^0.4.2;
 
 pragma solidity ^0.4.2;
 import "./entity.sol";
@@ -13,8 +12,13 @@ contract Tracer
     mapping (address => Owner) owners;
     mapping (address => Dealer) dealers;
     mapping (address => Manufacturer) manufacturers;
-    mapping (bytes32 => guns) assetStore;
+    mapping (bytes32 => guns) public assetStore;
     mapping (address => mapping(bytes32 => bool)) public entityStore;
+
+    event AssetCreate(address account, bytes32 uuid, bytes16 manufacturer);
+    event RejectCreate(address account, bytes32 uuid, string message);
+    event AssetTransfer(address from, address to, bytes32 uuid);
+    event RejectTransfer(address from, address to, bytes32 uuid, string message);
     
     function createOwner(bytes16 _name, uint _age) public
     {
@@ -37,9 +41,8 @@ contract Tracer
 
     function createAsset(bytes16 _gun_type, bytes16 _manufacturer, bool _initialized) public
     {
-        guns new_asset =  new guns();
-        new_asset.setAsset(new_asset, _gun_type, _manufacturer, _initialized);
-        bytes32 uuid = new_asset.getUuid(new_asset);
+        guns new_asset =  new guns(new_asset, _gun_type, _manufacturer, _initialized);
+        bytes32 uuid = new_asset.uuid();
         assetStore[uuid] = new_asset;
         entityStore[msg.sender][uuid] = true;
     }
@@ -56,7 +59,6 @@ contract Tracer
     {
         return manufacturerAccts;
     }
-    
     function getOwner(address ins) constant public returns (bytes16, uint)
     {
         return (owners[ins].name(), owners[ins].age());
@@ -67,7 +69,37 @@ contract Tracer
         {
             return true;
         }
-        
         return false;
     }
+    function transferAsset(address to, bytes32 uuid) public
+    {
+	    if(!assetStore[uuid].initialized())
+	    {
+		    RejectTransfer(msg.sender, to, uuid, "No asset with this UUID exists");
+		    return;
+    	}
+    	if(!entityStore[msg.sender][uuid])
+    	{
+		    RejectTransfer(msg.sender, to, uuid, "Sender does not own this asset.");
+        	return;
+	    }
+    
+	    entityStore[msg.sender][uuid] = false;
+    	entityStore[to][uuid] = true;
+    	AssetTransfer(msg.sender, to, uuid);
+	}
+
+	function getAssetByUUID(bytes32 uuid) constant returns (bytes16, bytes16)
+	{
+ 
+	return (assetStore[uuid].gun_type(), assetStore[uuid].manufact());
+ 
+	}
+
+    
+    function getAsset(bytes32 uuid) view public returns(bytes16, bytes16, bytes32, bool) {
+        return (assetStore[uuid].gun_type(), assetStore[uuid].manufact(), assetStore[uuid].uuid(), assetStore[uuid].initialized());
+    }
+    
+
 }

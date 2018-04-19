@@ -1,0 +1,19 @@
+{
+  "name": "tracer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "web3.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/set808/tracer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/set808/tracer/issues"
+  },
+  "homepage": "https://github.com/set808/tracer#readme"
+}

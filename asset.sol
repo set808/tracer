@@ -1,36 +1,21 @@
 pragma solidity ^0.4.2;
 
 contract guns {
-
-	struct asset {
-	       uint serial;
-               bytes32 uuid;
-               string owner;
-               string manufact;
-               bool initialized;
-    	       }
-
-    mapping (address => asset) assets;
+	    
+    bytes32 public uuid;
+    bytes16 public gun_type;
+    bytes16 public manufact;
+    bool public initialized;
+    	       
     address[] public assetAccts;
 
-    function setAsset(address _address, uint _serial, string _manufact, string _owner, bool _initialized) public {
-        var asset = assets[_address];
-        
-        asset.serial = _serial;
-        asset.uuid = keccak256(_address);
-        asset.owner = _owner;
-        asset.manufact = _manufact;
-        asset.initialized = _initialized;
+    function guns(address _address, bytes16 _gun_type, bytes16 _manufact, bool _initialized) public {
+                
+        uuid = keccak256(_address);
+        gun_type = _gun_type;
+        manufact = _manufact;
+        initialized = _initialized;
         
         assetAccts.push(_address) -1;
     }
-    
-    function getAssets() view public returns(address[]) {
-        return assetAccts;
-    }
-    
-    function getAsset(address _address) view public returns(uint, string, string, bytes32, bool) {
-        return (assets[_address].serial, assets[_address].manufact, assets[_address].owner, assets[_address].uuid, assets[_address].initialized);
-    }
-    
 }
