@@ -1,4 +1,3 @@
-
 pragma solidity ^0.4.2;
 import "./entity.sol";
 import "./asset.sol";
@@ -79,7 +78,7 @@ contract Tracer
         }
         return false;
     }
-    function transferAsset(address to, bytes32 uuid) public
+    function transferAsset(address from, address to, bytes32 uuid) public
     {
 	if(!assetStore[uuid].initialized)
 	{
