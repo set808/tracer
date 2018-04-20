@@ -10,40 +10,40 @@ contract Tracer
         address[] manufacturerAccts;
     
     mapping (address => Owner) owners;
-    mapping (bytes16 => Owner) owneraddress;
+    mapping (string => Owner) owneraddress;
     mapping (address => Dealer) dealers;
-    mapping (bytes16 => Dealer) dealeraddress;
+    mapping (string => Dealer) dealeraddress;
     mapping (address => Manufacturer) manufacturers;
-    mapping (bytes16 => Manufacturer) manufactureraddress;
+    mapping (string => Manufacturer) manufactureraddress;
     mapping (bytes32 => guns) public assetStore;
     mapping (address => mapping(bytes32 => bool)) public entityStore;
 
-    event AssetCreate(address account, bytes32 uuid, bytes16 manufacturer);
+    event AssetCreate(address account, bytes32 uuid, string manufacturer);
     event RejectCreate(address account, bytes32 uuid, string message);
     event AssetTransfer(address from, address to, bytes32 uuid);
     event RejectTransfer(address from, address to, bytes32 uuid, string message);
     
-    function createOwner(bytes16 _name, uint _age) public
+    function createOwner(string _name, uint _age) public
     {
         Owner new_owner = new Owner(_name, _age);
         owners[new_owner] = new_owner;
         owneraddress[new_owner.name()] = new_owner;
         ownerAccts.push(new_owner) - 1;
     }
-    function createDealer(bytes16 _name, bool _ffl) public
+    function createDealer(string _name, bool _ffl) public
     {
         Dealer new_dealer = new Dealer(_name, _ffl);
         dealers[new_dealer] = new_dealer;
         dealerAccts.push(new_dealer) - 1;
     }
-    function createManufacturer(bytes16 _name, bool _ffl) public
+    function createManufacturer(string _name, bool _ffl) public
     {
         Manufacturer new_man = new Manufacturer(_name, _ffl);
         manufacturers[new_man] = new_man;
         manufacturerAccts.push(new_man) - 1;
     }
 
-    function createAsset(bytes16 _gun_type, bytes16 _manufacturer, bool _initialized) public returns (bytes32)
+    function createAsset(string _gun_type, string _manufacturer, bool _initialized) public returns (bytes32)
     {
         guns new_asset =  new guns(new_asset, _gun_type, _manufacturer, _initialized);
         bytes32 uuid = new_asset.uuid();
@@ -64,23 +64,23 @@ contract Tracer
     {
         return manufacturerAccts;
     }
-    function getOwner(address ins) constant public returns (bytes16, uint)
+    function getOwner(address ins) constant public returns (string, uint)
     {
         return (owners[ins].name(), owners[ins].age());
     }
-    function getDealer(address ins) constant public returns (bytes16, bool)
+    function getDealer(address ins) constant public returns (string, bool)
     {
         return (dealers[ins].name(), dealers[ins].ffl());
     }
-    function getOwnerAddress(bytes16 name) constant public returns (address)
+    function getOwnerAddress(string name) constant public returns (address)
     {
         return owneraddress[name].own_add();
     }
-    function getDealerAddress(bytes16 name) constant public returns (address)
+    function getDealerAddress(string name) constant public returns (address)
     {
         return (dealeraddress[name].deal_add());   
     }
-    function getManufacturerAddress(bytes16 name) constant public returns (address)
+    function getManufacturerAddress(string name) constant public returns (address)
     {
         return manufactureraddress[name].man_add();
     }
@@ -110,7 +110,7 @@ contract Tracer
     	AssetTransfer(msg.sender, to, uuid);
 	}
 
-	function getAssetByUUID(bytes32 uuid) constant returns (bytes16, bytes16)
+	function getAssetByUUID(bytes32 uuid) constant returns (string, string)
 	{
  
 	return (assetStore[uuid].gun_type(), assetStore[uuid].manufact());
@@ -118,7 +118,7 @@ contract Tracer
 	}
 
     
-    function getAsset(bytes32 uuid) view public returns(bytes16, bytes16, bytes32, bool) {
+    function getAsset(bytes32 uuid) view public returns(string, string, bytes32, bool) {
         return (assetStore[uuid].gun_type(), assetStore[uuid].manufact(), assetStore[uuid].uuid(), assetStore[uuid].initialized());
     }
     
