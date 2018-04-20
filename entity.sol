@@ -30,14 +30,14 @@ contract Dealer
 
 contract Manufacturer
 {
-    bytes16 name;
-    bool ffl;
-    address deal_add;
+    bytes16 public name;
+    bool public ffl;
+    address public man_add;
     
     function Manufacturer(bytes16 _name, bool _ffl) public
     {
         name = _name;
         ffl = _ffl;
-        deal_add = this;
+        man_add = this;
     }
 }
