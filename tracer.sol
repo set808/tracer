@@ -63,6 +63,14 @@ contract Tracer
     {
         return (owners[ins].name(), owners[ins].age());
     }
+     function getDealer(address ins) constant public returns (bytes16, bool)
+    {
+        return (dealers[ins].name(), dealers[ins].ffl());
+    }
+     function getManufacturer(address ins) constant public returns (bytes16, bool)
+    {
+        return (manufacturers[ins].name(), manufacturers[ins].ffl());
+    }
     function isOwnerOf(address owner, bytes32 uuid) constant public returns (bool)
     {
         if (entityStore[owner][uuid])
