@@ -8,12 +8,15 @@ contract Tracer
         address[] dealerAccts;
         address[] manufacturerAccts;
     
-    mapping (address => Owner) owners;
+ mapping (address => Owner) owners;
+    mapping (bytes16 => Owner) owneraddress;
     mapping (address => Dealer) dealers;
+    mapping (bytes16 => Dealer) dealeraddress;
     mapping (address => Manufacturer) manufacturers;
+    mapping (bytes16 => Manufacturer) manufactureraddress;
     mapping (bytes32 => guns) public assetStore;
     mapping (address => mapping(bytes32 => bool)) public entityStore;
-
+    
     event AssetCreate(address account, bytes32 uuid, bytes16 manufacturer);
     event RejectCreate(address account, bytes32 uuid, string message);
     event AssetTransfer(address from, address to, bytes32 uuid);
@@ -69,6 +72,18 @@ contract Tracer
      function getManufacturer(address ins) constant public returns (bytes16, bool)
     {
         return (manufacturers[ins].name(), manufacturers[ins].ffl());
+    }
+    function getOwnerAddress(bytes16 name) constant public returns (address)
+    {
+        return owneraddress[name].own_add();
+    }
+    function getDealerAddress(bytes16 name) constant public returns (address)
+    {
+        return (dealeraddress[name].deal_add());   
+    }
+    function getManufacturerAddress(bytes16 name) constant public returns (address)
+    {
+        return manufactureraddress[name].man_add();
     }
     function isOwnerOf(address owner, bytes32 uuid) constant public returns (bool)
     {
