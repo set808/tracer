@@ -12,19 +12,22 @@
 		<button type="button" id="CreateTracer" name="CreateTracer" formtarget="_self">Initialize Tracer</button><br><br>
 		<div id="createmanufacturer">
 			<h2>Create An Entity</h2>
-			<button type="button" id="CreateMan" name="CreateMan" formtarget="_self">Create Manufacturer</button><br><br>
 			<input type="text" id="ManName" name="ManName" placeholder="Enter the name">
 			<input type="text" id="ManFFL" name="ManFFL" placeholder="Enter the FFL"><br><br>
+			<button type="button" id="CreateMan" name="CreateMan" formtarget="_self">Create Manufacturer</button>
+			<input type="text" id="ManAddr" name="ManAddr" placeholder="Manufacturer Address"><br><br>
 		</div>
 		<div id="createdealer">
-			<button type="button" id="CreateDeal" name="CreateDeal" formtarget="_self">Create Dealer</button><br><br>
 			<input type="text" id="DealName" name="DealName" placeholder="Enter the name">
 			<input type="text" id="DealFFL" name="DealFFL" placeholder="Enter the FFL"><br><br>
+			<button type="button" id="CreateDeal" name="CreateDeal" formtarget="_self">Create Dealer</button>
+			<input type="text" id="DealerAddr" name="DealerAddr" placeholder="Dealer Address"><br><br>
 		</div>
 		<div id="createowner">
-			<button type="button" id="CreateOwner" name="CreateOwner" formtarget="_self">Create Owner</button><br><br>
 			<input type="text" id="OwnerName" name="OwnerName" placeholder="Enter the name">
-			<input type="text" id="OwnerAge" name="OwnerAge" placeholder="Enter the age"><br>
+			<input type="text" id="OwnerAge" name="OwnerAge" placeholder="Enter the age"><br><br>
+			<button type="button" id="CreateOwner" name="CreateOwner" formtarget="_self">Create Owner</button>
+			<input type="text" id="OwnerAddr" name="OwnerAddr" placeholder="Owner Address"><br><br>
 		</div>
 		<br>
 		<div id="createasset">
@@ -32,15 +35,17 @@
 			<button type="button" id="AssetCreate" name="AssetCreate" formtarget="_self">Create Asset</button><br><br>
 			<input type="text" id="AssetType" name="AssetType" placeholder="Enter the type">
 			<input type="text" id="AssetMan" name="AssetMan" placeholder="Enter the manufacturer">
-			<input type="text" id="Init" name="Init" placeholder="Initialized: T or F?">	
+			<input type="text" id="Init" name="Init" placeholder="Initialized: T or F?">
+			<br>
+			<br>
 			<textarea id="AssetUUID" name="AssetCreateDisp" placeholder="Displays asset UUID or failure" cols="30" rows="5" required></textarea><br>
 		</div>
 		<br>
 		<div id="transferasset">
 			<h2>Transfer An Asset</h2>
 			<button type="button" id="TransferAsset" name="TransferAsset" formtarget="_self">Transfer Asset</button><br><br>
-			<input type="text" id="TransferAssUUID" placeholder="Enter asset UUID" name="AssetTransferUUID"><br>
-			<input type="text" id="TransferFrom" placeholder="Enter where from" name="FromField"><br>
+			<input type="text" id="TransferAssUUID" placeholder="Enter asset UUID" name="AssetTransferUUID">
+			<input type="text" id="TransferFrom" placeholder="Enter where from" name="FromField">
 			<input type="text" id="TransferTo" placeholder="Enter where to" name="ToField"><br><br>
 			<textarea name="myTextarea" id="TransferSuccess" placeholder="Displays success or failure of transfer." cols="15" rows="5" required></textarea><br>
 		</div>
@@ -167,36 +172,31 @@
 			
 				var newTracer = InitializeTracer.at('NEW TRACER ADDRESS');
 			});
-		
-			'ENTITIES MAY NOT HAVE DISTINCT ADDRESSES THE WAY THE CODE IS WRITTEN'
 			$("#CreateMan").click(function(){
 				newTracer.createManufacturer($("#ManName").val(), $("#ManFFL").val());
+				$("#ManAddr").attr("placeholder") = newTracer.getManufacturerAddress;
 			});
 			
 			$("#CreateDeal").click(function(){
 				newTracer.createDealer($("#DealName").val(), $("#DealFFL").val());
+				$("#DealerAddr").attr("placeholder") = newTracer.getDealerAddress;
 			});
 			
 			$("#CreateOwner").click(function(){
 				newTracer.createOwner($("#OwnerName").val(), $("#OwnerAge").val());
+				$("#OwnerAddr").attr("placeholder") = newTracer.getOwnerAddress;
 			});
 			
 			$("#AssetCreate").click(function(){
-				newTracer.createAsset($("#AssetType").val(), $("#AssetMan").val(), $("#Init").val());
-				'PASS ASSETSTORE FUNCTION WITH UUID FOR GUN UUID'
-				'RETURN UUID TO TEXTBOX'
-				$("#AssetUUID").val() = 'UUID RETURNED'
+				var assetID = newTracer.createAsset($("#AssetType").val(), $("#AssetMan").val(), $("#Init").val());
+				$("#AssetUUID").attr("placeholder") = assetID;
 			});
 			
 			$("#TransferAsset").click(function(){
-				'WHERE IS THE FROM INPUT?'
 				newTracer.transferAsset($("#TransferTo").val(), $("#TransferAssUUID").val());
-				$("#TransferSuccess").val() = 'Success/Fail'
+				$("#TransferSuccess").attr("placeholder") = "Transfer of asset complete"
 			});
-			
-			'NEED A DISPLAY HISTORY FUNCTION TO DISPLAY ADDRESS HISTORY AS A STRING'
-			$("#DispHist").click(function(){
-				$("#HistoryArea").val() = newTracer.displayHistory($("#AssetUUID").val());
+
 			}
 		</script>
 	</body>
