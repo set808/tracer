@@ -13,6 +13,7 @@ contract Tracer
     mapping (string => Owner) owneraddress;
     mapping (address => Dealer) dealers;
     mapping (string => Dealer) dealeraddress;
+    mapping (string => guns) public uuidStore;
     mapping (address => Manufacturer) manufacturers;
     mapping (string => Manufacturer) manufactureraddress;
     mapping (bytes32 => guns) public assetStore;
@@ -79,6 +80,10 @@ contract Tracer
     function getDealerAddress(string name) constant public returns (address)
     {
         return (dealeraddress[name].deal_add());   
+    }
+    function getUuid(string type) constant public returns (bytes32)
+    {
+        return (assetStore[type].uuid());
     }
     function getManufacturerAddress(string name) constant public returns (address)
     {
