@@ -91,9 +91,9 @@ contract Tracer
         	return;
 	}
  
-	entityStore[msg.sender][uuid] = false;
+	entityStore[from][uuid] = false;
     	entityStore[to][uuid] = true;
-    	AssetTransfer(msg.sender, to, uuid);
+    	AssetTransfer(from, to, uuid);
 	}	
 
 	function getAssetByUUID(bytes32 uuid) constant returns (bytes16, bytes16)
