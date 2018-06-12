@@ -2,11 +2,11 @@ pragma solidity ^0.4.2;
 
 contract Owner
 {
-    string public name;
+    bytes16 public name;
     uint public age;
     address public own_add;
     
-    function Owner(string _name, uint _age) public
+    function Owner(bytes16 _name, uint _age) public
     {
         name = _name;
         age = _age;
@@ -16,11 +16,11 @@ contract Owner
 
 contract Dealer
 {
-    string public name;
+    bytes16 public name;
     bool public ffl;
     address public deal_add;
     
-    function Dealer(string _name, bool _ffl) public
+    function Dealer(bytes16 _name, bool _ffl) public
     {
         name = _name;
         ffl = _ffl;
@@ -30,11 +30,11 @@ contract Dealer
 
 contract Manufacturer
 {
-    string public name;
+    bytes16 public name;
     bool public ffl;
     address public man_add;
     
-    function Manufacturer(string _name, bool _ffl) public
+    function Manufacturer(bytes16 _name, bool _ffl) public
     {
         name = _name;
         ffl = _ffl;

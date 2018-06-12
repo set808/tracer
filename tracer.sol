@@ -80,11 +80,15 @@ contract Tracer
         return (dealeraddress[name].deal_add());   
     }
 
+<<<<<<< HEAD
+    function getUuid(bytes16 types) constant public returns (bytes32)
+=======
     function getUuid(string type) constant public returns (bytes32)
+>>>>>>> 2010007852200f874018d5ddc059f506675759e6
     {
-        return (assetStore[type].uuid());
+        return (assetStore[types].uuid());
     }
-    function getManufacturerAddress(string name) constant public returns (address)
+    function getManufacturerAddress(bytes16 name) constant public returns (address)
     {
         return manufactureraddress[name].man_add();
     }
@@ -98,18 +102,18 @@ contract Tracer
     }
     function transferAsset(address to, bytes32 uuid) public
     {
-	    if(!assetStore[uuid].initialized())
+        if(!assetStore[uuid].initialized())
 	    {
 		    RejectTransfer(msg.sender, to, uuid, "No asset with this UUID exists");
-		    return;
-    	}
-    	if(!entityStore[msg.sender][uuid])
-    	{
-		    RejectTransfer(msg.sender, to, uuid, "Sender does not own this asset.");
-        	return;
-	    }
+		    			           return;
+    						   }
+    						   if(!entityStore[msg.sender][uuid])
+    						   {
+							    RejectTransfer(msg.sender, to, uuid, "Sender does not own this asset.");
+        						    return;
+							        }
     
-	    entityStore[msg.sender][uuid] = false;
+        entityStore[msg.sender][uuid] = false;
     	entityStore[to][uuid] = true;
     	AssetTransfer(msg.sender, to, uuid);
 	}
@@ -117,9 +121,9 @@ contract Tracer
 	function getAssetByUUID(bytes32 uuid) constant returns (bytes16, bytes16)
 	{
  
-	return (assetStore[uuid].gun_type(), assetStore[uuid].manufact());
+ return (assetStore[uuid].gun_type(), assetStore[uuid].manufact());
  
-	}
+ }
 
     
     function getAsset(bytes32 uuid) view public returns(bytes16, bytes16, bytes32, bool) {
