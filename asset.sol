@@ -1,21 +1,43 @@
 pragma solidity ^0.4.2;
 
-contract guns {
-	    
-    bytes32 public uuid;
-    string public gun_type;
-    string public manufact;
-    bool public initialized;
-    	       
-    address[] public assetAccts;
+contract Owner
+{
+    bytes16 public name;
+    uint public age;
+    address public own_add;
+    
+    function Owner(bytes16 _name, uint _age) public
+    {
+        name = _name;
+        age = _age;
+        own_add = this;
+    }
+}
 
-    function guns(address _address, string _gun_type, string _manufact, bool _initialized) public {
-                
-        uuid = keccak256(_address);
-        gun_type = _gun_type;
-        manufact = _manufact;
-        initialized = _initialized;
-        
-        assetAccts.push(_address) -1;
+contract Dealer
+{
+    bytes16 public name;
+    bool public ffl;
+    address public deal_add;
+    
+    function Dealer(bytes16 _name, bool _ffl) public
+    {
+        name = _name;
+        ffl = _ffl;
+        deal_add = this;
+    }
+}
+
+contract Manufacturer
+{
+    bytes16 public name;
+    bool public ffl;
+    address public man_add;
+    
+    function Manufacturer(bytes16 _name, bool _ffl) public
+    {
+        name = _name;
+        ffl = _ffl;
+        man_add = this;
     }
 }
