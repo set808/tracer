@@ -8,6 +8,7 @@ contract Tracer
         address[] buyerAccts;
         address[] vendorAccts;
         address[] manufacturerAccts;
+        bytes32[] assetUUIDs;
     
     mapping (address => Buyer) buyers;
     mapping (string => Buyer) buyeraddress;
@@ -23,11 +24,11 @@ contract Tracer
     event AssetTransfer(address from, address to, bytes32 uuid);
     event RejectTransfer(address from, address to, bytes32 uuid, string messid);
 
-    constructor()
+    constructor() public
     {
-
+        
     }
-
+    
     function createBuyer(string _name, uint _id) public
     {
         Buyer new_buyer = new Buyer(_name, _id);
@@ -55,6 +56,7 @@ contract Tracer
         bytes32 uuid = new_asset.uuid();
         assetStore[uuid] = new_asset;
         entityStore[msg.sender][uuid] = true;
+        assetUUIDs.push(uuid) - 1;
         return uuid;
     }
     
@@ -69,6 +71,10 @@ contract Tracer
     function getManufacturers() constant public returns (address[])
     {
         return manufacturerAccts;
+    }
+    function getAssetsUUIDs() constant public returns (bytes32[])
+    {
+        return assetUUIDs;
     }
     function getBuyer(address ins) constant public returns (string, uint)
     {
@@ -103,13 +109,13 @@ contract Tracer
         if(!assetStore[uuid].initialized())
 	    {
 		    emit RejectTransfer(msg.sender, to, uuid, "No asset with this UUID exists");
-		    			           return;
-    						   }
-    						   if(!entityStore[msg.sender][uuid])
-    						   {
-							    emit RejectTransfer(msg.sender, to, uuid, "Sender does not buyer this asset.");
-        						    return;
-							        }
+		    return;
+	    }
+    	if(!entityStore[msg.sender][uuid])
+    	{
+		    emit RejectTransfer(msg.sender, to, uuid, "Sender does not buyer this asset.");
+        	return;
+		}
     
         entityStore[msg.sender][uuid] = false;
     	entityStore[to][uuid] = true;
@@ -119,15 +125,7 @@ contract Tracer
 	function getAssetByUUID(bytes32 uuid) public constant returns (string, string)
 	{
  
- return (assetStore[uuid].description(), assetStore[uuid].manufact());
+        return (assetStore[uuid].description(), assetStore[uuid].manufact());
  
- }
-
-    
-    function getAsset(bytes32 uuid) view public returns(string, string, bytes32, bool) {
-        return (assetStore[uuid].description
-(), assetStore[uuid].manufact(), assetStore[uuid].uuid(), assetStore[uuid].initialized());
     }
-    
-
 }
