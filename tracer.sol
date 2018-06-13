@@ -4,17 +4,17 @@ import "./asset.sol";
 
 contract Tracer
 {
-        address[] ownerAccts;
-        address[] dealerAccts;
+        address[] buyerAccts;
+        address[] vendorAccts;
         address[] manufacturerAccts;
     
-    mapping (address => Owner) owners;
-    mapping (string => Owner) owneraddress;
-    mapping (address => Dealer) dealers;
-    mapping (string => Dealer) dealeraddress;
+    mapping (address => Buyer) buyers;
+    mapping (string => Buyer) buyeraddress;
+    mapping (address => Vendor) vendors;
+    mapping (string => Vendor) vendoraddress;
     mapping (address => Manufacturer) manufacturers;
     mapping (string => Manufacturer) manufactureraddress;
-    mapping (bytes32 => guns) public assetStore;
+    mapping (bytes32 => Asset) public assetStore;
     mapping (address => mapping(bytes32 => bool)) public entityStore;
 
     event AssetCreate(address account, bytes32 uuid, string manufacturer);
@@ -22,10 +22,10 @@ contract Tracer
     event AssetTransfer(address from, address to, bytes32 uuid);
     event RejectTransfer(address from, address to, bytes32 uuid, string message);
     
-    function createOwner(string _name, uint _age) public
+    function createBuyer(string _name, uint _id) public
     {
-        Owner new_owner = new Owner(_name, _age);
-        owners[new_owner] = new_owner;
+        Buyer new_buyer = new Buyer(_name, _id);
+        buyers[new_buyer] = new_owner;
         owneraddress[new_owner.name()] = new_owner;
         ownerAccts.push(new_owner) - 1;
     }
@@ -44,7 +44,7 @@ contract Tracer
 
     function createAsset(string _gun_type, string _manufacturer, bool _initialized) public returns (bytes32)
     {
-        guns new_asset =  new guns(new_asset, _gun_type, _manufacturer, _initialized);
+        Asset new_asset =  new guns(new_asset, _gun_type, _manufacturer, _initialized);
         bytes32 uuid = new_asset.uuid();
         assetStore[uuid] = new_asset;
         entityStore[msg.sender][uuid] = true;
