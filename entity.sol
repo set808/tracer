@@ -1,43 +1,43 @@
 pragma solidity ^0.4.2;
 
-contract Owner
+contract Buyer
 {
     string public name;
-    uint public age;
-    address public own_add;
+    uint public id;
+    address public buyer_add;
     
-    function Owner(string _name, uint _age) public
+    constructor(string _name, uint _id) public
     {
         name = _name;
-        age = _age;
-        own_add = this;
+        id = _id;
+        buyer_add = this;
     }
 }
 
-contract Dealer
+contract Vendor
 {
     string public name;
-    bool public ffl;
-    address public deal_add;
+    bool public license;
+    address public vendor_add;
     
-    function Dealer(string _name, bool _ffl) public
+    constructor(string _name, bool _license) public
     {
         name = _name;
-        ffl = _ffl;
-        deal_add = this;
+        license = _license;
+        vendor_add = this;
     }
 }
 
 contract Manufacturer
 {
     string public name;
-    bool public ffl;
+    bool public license;
     address public man_add;
     
-    function Manufacturer(string _name, bool _ffl) public
+    constructor(string _name, bool _license) public
     {
         name = _name;
-        ffl = _ffl;
+        license = _license;
         man_add = this;
     }
 }
