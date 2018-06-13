@@ -22,7 +22,12 @@ contract Tracer
     event RejectCreate(address account, bytes32 uuid, string messid);
     event AssetTransfer(address from, address to, bytes32 uuid);
     event RejectTransfer(address from, address to, bytes32 uuid, string messid);
-    
+
+    constructor()
+    {
+
+    }
+
     function createBuyer(string _name, uint _id) public
     {
         Buyer new_buyer = new Buyer(_name, _id);
