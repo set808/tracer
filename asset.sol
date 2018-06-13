@@ -11,7 +11,7 @@ contract Asset {
 
     constructor(address _address, string _description, string _manufact, bool _initialized) public {
                 
-        uuid = keccak256(_address);
+        uuid = keccak256(abi.encodePacked(_address));
         description  = _description;
         manufact = _manufact;
         initialized = _initialized;

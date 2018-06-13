@@ -23,7 +23,7 @@ contract Tracer
     event AssetTransfer(address from, address to, bytes32 uuid);
     event RejectTransfer(address from, address to, bytes32 uuid, string messid);
 
-    constructor()
+    constructor() public
     {
 
     }
