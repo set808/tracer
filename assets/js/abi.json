@@ -1,0 +1,396 @@
+[{
+		"constant": true,
+		"inputs": [{
+			"name": "name",
+			"type": "string"
+		}],
+		"name": "getManufacturerAddress",
+		"outputs": [{
+			"name": "",
+			"type": "address"
+		}],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [{
+			"name": "ins",
+			"type": "address"
+		}],
+		"name": "getVendor",
+		"outputs": [{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [{
+			"name": "",
+			"type": "uint256"
+		}],
+		"name": "assetStore",
+		"outputs": [{
+			"name": "",
+			"type": "address"
+		}],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [{
+			"name": "name",
+			"type": "string"
+		}],
+		"name": "getVendorAddress",
+		"outputs": [{
+			"name": "",
+			"type": "address"
+		}],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [{
+			"name": "ins",
+			"type": "address"
+		}],
+		"name": "getBuyer",
+		"outputs": [{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [{
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"name": "uuid",
+				"type": "uint256"
+			}
+		],
+		"name": "transferAsset",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [{
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"name": "_license",
+				"type": "bool"
+			}
+		],
+		"name": "createVendor",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getVendors",
+		"outputs": [{
+			"name": "",
+			"type": "address[]"
+		}],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [{
+				"name": "_description",
+				"type": "string"
+			},
+			{
+				"name": "_manufacturer",
+				"type": "string"
+			},
+			{
+				"name": "_initialized",
+				"type": "bool"
+			}
+		],
+		"name": "createAsset",
+		"outputs": [{
+			"name": "",
+			"type": "uint256"
+		}],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [{
+			"name": "name",
+			"type": "string"
+		}],
+		"name": "getBuyerAddress",
+		"outputs": [{
+			"name": "",
+			"type": "address"
+		}],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [{
+			"name": "uuid",
+			"type": "uint256"
+		}],
+		"name": "getAssetByUUID",
+		"outputs": [{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [{
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "createBuyer",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getManufacturers",
+		"outputs": [{
+			"name": "",
+			"type": "address[]"
+		}],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getAssetsUUIDs",
+		"outputs": [{
+			"name": "",
+			"type": "uint256[]"
+		}],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [{
+				"name": "",
+				"type": "address"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "entityStore",
+		"outputs": [{
+			"name": "",
+			"type": "bool"
+		}],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [{
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"name": "_license",
+				"type": "bool"
+			}
+		],
+		"name": "createManufacturer",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [{
+				"name": "buyer",
+				"type": "address"
+			},
+			{
+				"name": "uuid",
+				"type": "uint256"
+			}
+		],
+		"name": "isBuyerOf",
+		"outputs": [{
+			"name": "",
+			"type": "bool"
+		}],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getBuyers",
+		"outputs": [{
+			"name": "",
+			"type": "address[]"
+		}],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [{
+				"indexed": false,
+				"name": "account",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "uuid",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "manufacturer",
+				"type": "string"
+			}
+		],
+		"name": "AssetCreate",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [{
+				"indexed": false,
+				"name": "account",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "uuid",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "messid",
+				"type": "string"
+			}
+		],
+		"name": "RejectCreate",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [{
+				"indexed": false,
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "uuid",
+				"type": "uint256"
+			}
+		],
+		"name": "AssetTransfer",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [{
+				"indexed": false,
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "uuid",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "messid",
+				"type": "string"
+			}
+		],
+		"name": "RejectTransfer",
+		"type": "event"
+	}
+]

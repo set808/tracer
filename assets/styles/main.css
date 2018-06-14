@@ -1,0 +1,547 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,700,400italic,300italic,700italic);
+html {
+  height: 100%
+}
+
+body {
+  min-width: 400px;
+  font-family: Roboto, sans-serif;
+  padding-top: 55px;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #e0e0e0;
+  transition: all .5s ease-in-out
+}
+
+body.active-left-place {
+  transform: translateX(460px);
+  overflow: hidden
+}
+
+.column {
+  flex: 1
+}
+
+.center {
+  text-align: center
+}
+
+.right {
+  text-align: right
+}
+
+#magnet-overlay, #main-sidebar, .active-left-place #magnet-overlay {
+  transition: all .5s ease-in-out
+}
+
+.app-main-header {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  height: 55px;
+  top: 0;
+  z-index: 10;
+  background: linear-gradient(to right,rgb(18, 198, 123) 0,rgba(0,225,190,1) 100%);
+  border-bottom: 4px solid #17c696;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28)
+}
+
+.app-main-header h1 {
+  margin: 0
+}
+
+.app-main-header h1 img {
+  margin: -73px 0 0 77px;
+  width: 50px;
+  display: block
+}
+
+.app-main-header h1 span {
+  font-weight: 100;
+  font-style: italic;
+  position: absolute;
+  top: 16px;
+  color: #fff;
+  font-size: 24px;
+  left: 85px
+}
+
+.app-main-header #app-main-nav-button {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwAQAAAAB/ecQqAAAAAnRSTlMAAHaTzTgAAAAWSURBVHgBY6AFYP4PBAewUoPbFMoBAE11OPW6yVcZAAAAAElFTkSuQmCC") no-repeat 50%;
+  display: inline-block;
+  width: 55px;
+  height: 55px;
+  padding: 16px;
+  margin-top: -13px;
+  background-size: 50%
+}
+
+.app-main-header .by-cu7ious {
+  text-align: center
+}
+
+.app-main-header .by-cu7ious img {
+  display: inline-block;
+  width: 150px;
+  margin: 20px 0 0
+}
+
+.app-main-header .github-badge {
+  position: absolute;
+  top: 10px;
+  right: 15px
+}
+
+.app-main-header .app-main-nav {
+  display: none
+}
+
+.wrapper {
+  min-height: 100%;
+  color: #3d4255;
+  text-align: center
+}
+
+.wrapper .panel {
+  display: flex;
+  background-color: hsla(0, 0%, 100%, .8);
+  min-height: 75px;
+  line-height: 40px;
+  text-align: center
+}
+
+.wrapper .panel h3 {
+  width: 100%;
+      color: #848484;
+}
+
+@media screen and (max-width:700px) {
+  .app-main-header .by-cu7ious {
+    text-align: right
+  }
+  .app-main-header .by-cu7ious svg {
+    width: 60%
+  }
+}
+
+@media screen and (max-width:500px) {
+  .app-main-header .by-cu7ious {
+    display: none
+  }
+}
+
+/* Sidebar */
+
+#main-sidebar {
+  width: 400px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  /* left: -400px; */
+  transform: translateX(-460px);
+  background: #fff;
+  padding: 30px;
+  z-index: 999
+}
+
+.main-sidebar-wrapper {
+  height: 80vh
+}
+
+#main-sidebar .header-section h2, #main-sidebar .header-section h3 {
+  font-weight: 100;
+  font-style: italic;
+  text-align: center;
+  color: rgba(0,225,190,1)
+}
+
+#main-sidebar section {
+  max-width: 87%;
+  margin-top: 30px;
+}
+
+#main-sidebar button {
+  position: absolute;
+  top: 0;
+  right: 15px;
+  padding: 0;
+  border: 0;
+  color: #a9a9a9;
+  background-color: transparent;
+  font-size: 32px;
+  cursor: pointer;
+  outline: none;
+  transition: color .3s linear
+}
+
+#main-sidebar button:hover {
+  color: #6b6b6b
+}
+
+@media screen and (max-width:600px) {
+  #main-sidebar {
+    width: calc(100% - 60px)
+  }
+}
+
+#magnet-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: #000;
+  visibility: hidden;
+  opacity: 0;
+  cursor: pointer
+}
+
+.active-left-place #main-sidebar {
+  transform: translateX(-460px);
+  /* left: 0;
+  visibility: visible; */
+  overflow-y: auto
+}
+
+.active-left-place #magnet-overlay {
+  visibility: visible;
+  z-index: 99;
+  opacity: .6
+}
+
+.main-footer {
+  margin: 30px auto 0;
+  width: 80%;
+  text-align: center
+}
+
+.main-footer p {
+  margin-left: -100px;
+  font-size: 12px;
+  font-style: italic;
+  color: #3d4255
+}
+
+.main-footer a {
+  text-decoration: none
+}
+
+.main-footer a img {
+  width: 100px;
+  position: absolute;
+  margin-left: 5px
+}
+
+.wrapper .dynamic-block {
+    display: inline-block;
+    text-align: initial;
+    min-width: 40vw;
+    max-width: 60vw;
+    box-sizing: border-box;
+    background-color: hsla(0,0%,100%,.8);
+    box-shadow: 0 0 4px rgba(0,0,0,.05), 0 4px 8px rgba(0,0,0,.1);
+    padding: 25px;
+}
+
+.wrapper .canban-board {
+  padding: 25px 0 0;
+  display: block
+}
+
+.wrapper .canban-board .dynamic-block {
+  position: relative;
+  text-align: initial;
+  min-width: 60vw;
+  width: 90vw;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: row;
+  flex: auto;
+  margin: 0 auto;
+}
+
+.wrapper .canban-board .dynamic-block > div {
+        width: 32%;
+        margin-right: 2%;
+}
+.wrapper .canban-board .dynamic-block .Board {
+
+}
+.wrapper .canban-board .dynamic-block .Board .Board-internals {
+        background-color: hsla(0, 0%, 100%, .8);
+        box-shadow: 0 0 4px rgba(0, 0, 0, .05), 0 4px 8px rgba(0, 0, 0, .1)
+}
+
+.wrapper .canban-board .dynamic-block .Board:last-child {
+        margin-right: 0;
+}
+
+.wrapper .canban-board .dynamic-block .Board h3 {
+        margin: 0;
+        padding: 0 20px 20px;
+}
+
+.wrapper .canban-board .dynamic-block .Board .input-form {
+        display: inline-block;
+width: 100%;
+color: #bbb;
+font: 16px monospace;
+box-shadow: inset 0 -4px 5px 0 rgba(0,0,0,.08);
+    border-top: 1px solid #bbbbbb40;
+height: 55px;
+}
+
+.wrapper .canban-board .dynamic-block .Board .input-form .control {
+        position: absolute;
+    margin-left: 20px;
+    margin-top: 3px;
+    font-size: 30px;
+    display: inline-block;
+    transition: color .3s linear;
+}
+
+.wrapper .canban-board .dynamic-block .Board .input-form input {
+        color: #3d4255;
+            border: 0;
+            height: 40px;
+            padding: 0px 0 0 20px;
+            margin: 5px 0 0;
+            background: transparent;
+            font-size: 18px;
+            font-weight: 100;
+}
+
+.wrapper .canban-board .dynamic-block .Board ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+}
+.wrapper .canban-board .dynamic-block .Board ul li {
+        box-sizing: border-box;
+width: 100%;
+min-height: 55px;
+line-height: 55px;
+position: relative;
+/* font-size: 30px; */
+font-weight: 100;
+border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.wrapper .canban-board .dynamic-block .Board ul li .remove {
+        color: transparent;
+    position: absolute;
+    top: 0;
+    right: 20px;
+}
+
+.wrapper .canban-board .dynamic-block .Board ul li:hover .remove {
+    color: #b51818;
+}
+
+.wrapper .canban-board .dynamic-block .Board ul li span {
+        padding: 0 60px 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+}
+
+.wrapper .canban-board .dynamic-block .Board ul li.item-is-done {
+        text-decoration: line-through;
+    color: #bbb;
+}
+
+@media screen and (max-width:850px) {
+  .wrapper .canban-board {
+    display: block;
+    padding: 8px 5px
+  }
+  .wrapper .canban-board .dynamic-block {
+    min-width: 70vw
+  }
+}
+
+@media screen and (max-width:650px) {
+  .wrapper .canban-board {
+    display: block;
+    padding: 8px 5px
+  }
+  .wrapper .canban-board .dynamic-block {
+    min-width: 96.5vw
+  }
+  .wrapper .canban-board ul li {
+    font-size: 20px!important
+  }
+}
+
+@media screen and (max-width:400px) {
+  .wrapper .canban-board .dynamic-block {
+    min-width: 390px;
+    width: 390px
+  }
+}
+
+.wrapper .canban-board ul {
+  list-style: none;
+  padding: 0;
+  margin: 0
+}
+
+.wrapper .canban-board ul li {
+  min-height: 23px;
+  margin: 0 8px 8px 2px
+}
+
+.wrapper .canban-board ul li input {
+  width: 90% !important
+}
+
+.wrapper .canban-board .subreddit-delete {
+  z-index: 2;
+  padding: 0 0 0 10px !important;
+  top: -12px !important
+}
+
+.wrapper .canban-board ul input, .wrapper .canban-board ul li {
+  position: relative;
+}
+
+.wrapper .canban-board input {
+  outline: none;
+  font-family: Roboto, sans-serif;
+  box-sizing: border-box;
+  width: 100%
+}
+
+.wrapper .canban-board .control {
+  font-style: normal;
+  cursor: pointer
+}
+
+.feed-card {
+  margin: 20px;
+  overflow: hidden
+}
+
+.feed-card figure {
+  margin: 0
+}
+
+.feed-card figure img {
+  float: left
+}
+
+.feed-card figure figcaption {
+  float: left;
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+.canban-board-feed {
+  overflow: hidden
+}
+
+.card-title span  {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+.preload {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -26px;
+  border-radius: 4px;
+  background: rgba(0,225,190,1);
+  transform: rotate(45deg);
+  animation: spin 1s infinite linear
+}
+@keyframes spin {
+	0% { -webkit-transform:rotate(0deg) }
+	100% { -webkit-transform:rotate(360deg) }
+}
+
+#Notification {
+        position: fixed;
+        right: 0;
+        background-color: rgba(255, 255, 255, 05);
+        padding: 20px;
+        margin: 20px;
+        z-index: 99;
+        border-radius: 4px;
+        box-shadow: 0 0 4px rgba(0, 0, 0, .05), 0 4px 8px rgba(0, 0, 0, .1);
+        transition: all .5s ease-in-out;
+        opacity: 0
+}
+
+.wrapper .input-form {
+    display: inline-block;
+    margin-top: 10px;
+    width: 100%;
+    color: #bbb;
+    font: 16px monospace;
+    box-shadow: inset 0 -4px 5px 0 rgba(0,0,0,.08);
+    min-height: 55px;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+.wrapper .input-form .control {
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 3px;
+    font-size: 30px;
+    display: inline-block;
+    transition: color .3s linear;
+}
+
+.wrapper .control {
+    font-style: normal;
+    cursor: pointer;
+}
+
+.wrapper .input-form input,
+.wrapper .input-form textarea
+{
+    color: #3d4255;
+    border: 0;
+    height: 40px;
+    padding: 0;
+    background: transparent;
+    font-size: 30px;
+    font-weight: 100;
+    box-sizing: border-box;
+}
+
+.wrapper .input-form textarea,
+.wrapper .input-form h3 {
+        width: 100%;
+        min-height: 140px;
+}
+
+.wrapper input {
+    outline: none;
+    font-family: Roboto,sans-serif;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.wrapper button {
+    margin: 0 3px;
+    padding: 10px;
+    border: 0;
+    background-color: #d3d3d3;
+    cursor: pointer;
+    outline: none;
+    background-color: #fff;
+    transition: all .9s cubic-bezier(.23,1,.32,1) 0ms;
+    box-shadow: 0 1px 6px rgba(0,0,0,.117647), 0 1px 4px rgba(0,0,0,.117647);
+    border-radius: 2px;
+}

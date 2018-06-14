@@ -1,203 +1,197 @@
-<!DOCTYPE html>
-<html lang=”en”>
-	<head>
-		<meta charset=”utf-8″>
-		<title>Tracer Demonstration</title>
-		<script src="https://raw.githubusercontent.com/set808/tracer/master/web3.min.js"></script>
-	</head>
-	<body>
-		<h1>Tracer Demonstration</h1>
-		<br>
-		
-		<button type="button" id="CreateTracer" name="CreateTracer" formtarget="_self">Initialize Tracer</button><br><br>
-		<div id="createmanufacturer">
-			<h2>Create An Entity</h2>
-			<input type="text" id="ManName" name="ManName" placeholder="Enter the name">
-			<input type="text" id="ManFFL" name="ManFFL" placeholder="Enter the FFL"><br><br>
-			<button type="button" id="CreateMan" name="CreateMan" formtarget="_self">Create Manufacturer</button>
-			<input type="text" id="ManAddr" name="ManAddr" placeholder="Manufacturer Address"><br><br>
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="#000000">
+	<link rel="shortcut icon" href="assets/favicon.ico">
+	<link rel="stylesheet" href="assets/styles/main.css">
+	<title>Tracer :: Blockchain based Assets Management Platform</title>
+</head>
+
+<body>
+	<noscript>
+	You need to enable JavaScript to run this app.
+	</noscript>
+
+	<header class="app-main-header">
+
+		<h1 class="column" title="Solidity based Assets Management Platform">
+			<a id="app-main-nav-button" href="#"></a>
+			<span>Tracer</span>
+		</h1>
+
+		<div class="column">
+			<a class="github-badge" target="_blank" title="See more on GitHub" href="//github.com/set808/tracer">
+				<img src="assets/svg/github.svg" alt="Github logo">
+			</a>
 		</div>
-		<div id="createdealer">
-			<input type="text" id="DealName" name="DealName" placeholder="Enter the name">
-			<input type="text" id="DealFFL" name="DealFFL" placeholder="Enter the FFL"><br><br>
-			<button type="button" id="CreateDeal" name="CreateDeal" formtarget="_self">Create Dealer</button>
-			<input type="text" id="DealerAddr" name="DealerAddr" placeholder="Dealer Address"><br><br>
-		</div>
-		<div id="createowner">
-			<input type="text" id="OwnerName" name="OwnerName" placeholder="Enter the name">
-			<input type="text" id="OwnerAge" name="OwnerAge" placeholder="Enter the age"><br><br>
-			<button type="button" id="CreateOwner" name="CreateOwner" formtarget="_self">Create Owner</button>
-			<input type="text" id="OwnerAddr" name="OwnerAddr" placeholder="Owner Address"><br><br>
-		</div>
-		<br>
-		<div id="createasset">
-			<h2>Create An Asset</h2>
-			<button type="button" id="AssetCreate" name="AssetCreate" formtarget="_self">Create Asset</button><br><br>
-			<input type="text" id="AssetType" name="AssetType" placeholder="Enter the type">
-			<input type="text" id="AssetMan" name="AssetMan" placeholder="Enter the manufacturer">
-			<input type="text" id="Init" name="Init" placeholder="Initialized: T or F?">
+	</header>
+
+	<main class="wrapper">
+		<div class='dynamic-block'>
+			<div id="createasset">
+				<h2>Create An Asset</h2>
+				<button type="button" id="AssetCreate" name="AssetCreate" formtarget="_self">Create Asset</button><br><br>
+				<div class="input-form">
+					<input type="text" id="AssetType" name="AssetType" placeholder="Enter the type">
+				</div>
+				<div class="input-form">
+					<input type="text" id="AssetMan" name="AssetMan" placeholder="Enter the manufacturer">
+				</div>
+				<div class="input-form">
+					<input type="text" id="Init" name="Init" placeholder="Initialized: T or F?">
+				</div>
+				<br>
+				<br>
+				<div class="input-form">
+					<h3 id="AssetUUID">UUID</h3>
+				</div>
+				<br>
+
+			</div>
 			<br>
+			<div id="createmanufacturer">
+				<h2>Create An Entity</h2>
+				<div class="input-form">
+					<input type="text" id="ManName" name="ManName" placeholder="Enter the name">
+				</div>
+				<div class="input-form">
+					<input type="text" id="ManFFL" name="ManFFL" placeholder="Enter the FFL">
+				</div>
+				<br><br>
+
+				<button type="button" id="CreateMan" name="CreateMan" formtarget="_self">Create Manufacturer</button>
+				<div class="input-form">
+					<input type="text" id="ManAddr" name="ManAddr" placeholder="Manufacturer Address">
+				</div>
+				<br><br>
+			</div>
+			<div id="createdealer">
+				<div class="input-form">
+					<input type="text" id="DealName" name="DealName" placeholder="Enter the name">
+				</div>
+				<div class="input-form">
+					<input type="text" id="DealFFL" name="DealFFL" placeholder="Enter the FFL">
+				</div>
+				<br><br>
+
+				<button type="button" id="CreateDeal" name="CreateDeal" formtarget="_self">Create Dealer</button>
+				<div class="input-form">
+					<input type="text" id="DealerAddr" name="DealerAddr" placeholder="Dealer Address">
+				</div>
+				<br><br>
+			</div>
+			<div id="createowner">
+				<div class="input-form">
+					<input type="text" id="OwnerName" name="OwnerName" placeholder="Enter the name">
+				</div>
+				<div class="input-form">
+					<input type="text" id="OwnerAge" name="OwnerAge" placeholder="Enter the age">
+				</div>
+				<br><br>
+				<button type="button" id="CreateOwner" name="CreateOwner" formtarget="_self">Create Owner</button>
+				<div class="input-form">
+					<input type="text" id="OwnerAddr" name="OwnerAddr" placeholder="Owner Address">
+				</div>
+				<br><br>
+			</div>
 			<br>
-			<textarea id="AssetUUID" name="AssetCreateDisp" placeholder="Displays asset UUID or failure" cols="30" rows="5" required></textarea><br>
+			<div id="transferasset">
+				<h2>Transfer An Asset</h2>
+				<button type="button" id="TransferAsset" name="TransferAsset" formtarget="_self">Transfer Asset</button><br><br>
+				<div class="input-form">
+					<input type="text" id="TransferAssUUID" placeholder="Enter asset UUID" name="AssetTransferUUID">
+				</div>
+				<div class="input-form">
+					<input type="text" id="TransferFrom" placeholder="Enter where from" name="FromField">
+				</div>
+				<div class="input-form">
+					<input type="text" id="TransferTo" placeholder="Enter where to" name="ToField">
+				</div>
+				<br><br>
+				<div class="input-form">
+					<h3 id="TransferSuccess">Displays success or failure of transfer.</h3>
+					<!-- <textarea name="myTextarea" id="TransferSuccess" placeholder="Displays success or failure of transfer." cols="15" rows="5" required></textarea> -->
+				</div>
+				<br>
+			</div>
+			<br>
+			<div id="displayhistory">
+				<h2>Display Asset History</h2>
+				<button type="button" id="DispHist" name="DispHist" formtarget="_self">Display History</button><br><br>
+				<div class="input-form">
+					<input type="text" id="AssetUUID" name="AssetUUID" placeholder="Enter the UUID">
+				</div>
+				<br><br>
+				<div class="input-form">
+					<h3 id="">Displays history.</h3>
+					<!-- <textarea id="HistoryArea" name="HistoryArea" placeholder="Displays history." cols="30" rows="15"></textarea> -->
+				</div>
+				<br>
+			</div>
 		</div>
-		<br>
-		<div id="transferasset">
-			<h2>Transfer An Asset</h2>
-			<button type="button" id="TransferAsset" name="TransferAsset" formtarget="_self">Transfer Asset</button><br><br>
-			<input type="text" id="TransferAssUUID" placeholder="Enter asset UUID" name="AssetTransferUUID">
-			<input type="text" id="TransferFrom" placeholder="Enter where from" name="FromField">
-			<input type="text" id="TransferTo" placeholder="Enter where to" name="ToField"><br><br>
-			<textarea name="myTextarea" id="TransferSuccess" placeholder="Displays success or failure of transfer." cols="15" rows="5" required></textarea><br>
-		</div>
-		<br>
-		<div id="displayhistory">
-			<h2>Display Asset History</h2>
-			<button type="button" id="DispHist" name="DispHist" formtarget="_self">Display History</button><br><br>
-			<input type="text" id="AssetUUID" name="AssetUUID" placeholder="Enter the UUID"><br><br>
-			<textarea id="HistoryArea" name="HistoryArea" placeholder="Displays history." cols="30" rows="15"></textarea><br>
-		</div>
-		
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-		
-		<script>
-			if (typeof web3 !== 'undefined'){
+	</main>
+
+	<div id="magnet-overlay"></div>
+
+	<script src="//code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script type="text/javascript" src="//rawgit.com/set808/tracer/master/web3.min.js"></script>
+	<script>
+		$(function() {
+			if (typeof web3 !== 'undefined') {
 				web3 = new Web3(web3.currentProvider);
-			}
-			else {
+			} else {
 				web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 			}
+
+			var app = {
+				UUID: null
+			}
+
 			web3.eth.defaultAccount = web3.eth.accounts[0];
-			
-			$("#CreateTracer").click(function(){
-				var InitializeTracer = new web3.eth.Contract([
-				{
-					"constant": true,
-					"inputs": [],
-					"name": "initialized",
-					"outputs": [
-						{
-							"name": "",
-							"type": "bool"
-						}
-					],
-					"payable": false,
-					"stateMutability": "view",
-					"type": "function"
-				},
-				{
-					"constant": true,
-					"inputs": [],
-					"name": "uuid",
-					"outputs": [
-						{
-							"name": "",
-							"type": "bytes32"
-						}
-					],
-					"payable": false,
-					"stateMutability": "view",
-					"type": "function"
-				},
-				{
-					"constant": true,
-					"inputs": [],
-					"name": "gun_type",
-					"outputs": [
-						{
-							"name": "",
-							"type": "string"
-						}
-					],
-					"payable": false,
-					"stateMutability": "view",
-					"type": "function"
-				},
-				{
-					"constant": true,
-					"inputs": [
-						{
-							"name": "",
-							"type": "uint256"
-						}
-					],
-					"name": "assetAccts",
-					"outputs": [
-						{
-							"name": "",
-							"type": "address"
-						}
-					],
-					"payable": false,
-					"stateMutability": "view",
-					"type": "function"
-				},
-				{
-					"constant": true,
-					"inputs": [],
-					"name": "manufact",
-					"outputs": [
-						{
-							"name": "",
-							"type": "string"
-						}
-					],
-					"payable": false,
-					"stateMutability": "view",
-					"type": "function"
-				},
-				{
-					"inputs": [
-						{
-							"name": "_address",
-							"type": "address"
-						},
-						{
-							"name": "_gun_type",
-							"type": "string"
-						},
-						{
-							"name": "_manufact",
-							"type": "string"
-						},
-						{
-							"name": "_initialized",
-							"type": "bool"
-						}
-					],
-					"payable": false,
-					"stateMutability": "nonpayable",
-					"type": "constructor"
-				}
-				]);
-			
-			    var newTracer = InitializeTracer.at(0xd54386134f565f6d5e2ddf344af35bec561e565f);
-			});
-			$("#CreateMan").click(function(){
+
+			var InitializeTracer = web3.eth.contract();
+
+			var newTracer = InitializeTracer.at(0xca35b7d915458ef540ade6068dfe2f44e8fa733c);
+
+			console.log(newTracer);
+
+			$("#CreateMan").click(function() {
 				newTracer.createManufacturer($("#ManName").val(), $("#ManFFL").val());
 				$("#ManAddr").attr("placeholder") = newTracer.getManufacturerAddress;
 			});
-			
-			$("#CreateDeal").click(function(){
+
+			$("#CreateDeal").click(function() {
 				newTracer.createDealer($("#DealName").val(), $("#DealFFL").val());
 				$("#DealerAddr").attr("placeholder") = newTracer.getDealerAddress;
 			});
-			
-			$("#CreateOwner").click(function(){
+
+			$("#CreateOwner").click(function() {
 				newTracer.createOwner($("#OwnerName").val(), $("#OwnerAge").val());
 				$("#OwnerAddr").attr("placeholder") = newTracer.getOwnerAddress;
 			});
-			
-			$("#AssetCreate").click(function(){
-				var assetID = newTracer.createAsset($("#AssetType").val(), $("#AssetMan").val(), $("#Init").val());
-				$("#AssetUUID").attr("placeholder") = assetID;
+
+			$("#AssetCreate").click(function() {
+				var assetType = $("#AssetType").val();
+				var assetMan = $("#AssetMan").val();
+				var init = $("#Init").val();
+				var assetID = newTracer.createAsset(assetType, assetMan, init);
+				// var assetID = "ololo";
+				console.log(assetID);
+
+				// $("#AssetUUID").attr("placeholder", assetID);
+				app.UUID = assetID;
+				$("#AssetUUID").html(assetID);
 			});
-			
-			$("#TransferAsset").click(function(){
+
+			$("#TransferAsset").click(function() {
 				newTracer.transferAsset($("#TransferTo").val(), $("#TransferAssUUID").val());
 				$("#TransferSuccess").attr("placeholder") = "Transfer of asset complete"
 			});
+		});
+	</script>
+</body>
 
-			}
-		</script>
-	</body>
 </html>
