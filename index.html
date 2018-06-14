@@ -152,44 +152,48 @@
 
 			web3.eth.defaultAccount = web3.eth.accounts[0];
 
-			var InitializeTracer = web3.eth.contract();
+			fetch("https://raw.githubusercontent.com/set808/tracer/master/assets/js/abi.json")
+				.then((resp) => resp.json())
+				.then(function(data) {
+					var InitializeTracer = web3.eth.contract(data);
 
-			var newTracer = InitializeTracer.at(0xca35b7d915458ef540ade6068dfe2f44e8fa733c);
+					var newTracer = InitializeTracer.at(0x0dcd2f752394c41875e259e00bb44fd505297caf);
 
-			console.log(newTracer);
+					console.log(newTracer);
 
-			$("#CreateMan").click(function() {
-				newTracer.createManufacturer($("#ManName").val(), $("#ManFFL").val());
-				$("#ManAddr").attr("placeholder") = newTracer.getManufacturerAddress;
-			});
+					$("#CreateMan").click(function() {
+						newTracer.createManufacturer($("#ManName").val(), $("#ManFFL").val());
+						$("#ManAddr").attr("placeholder") = newTracer.getManufacturerAddress;
+					});
 
-			$("#CreateDeal").click(function() {
-				newTracer.createDealer($("#DealName").val(), $("#DealFFL").val());
-				$("#DealerAddr").attr("placeholder") = newTracer.getDealerAddress;
-			});
+					$("#CreateDeal").click(function() {
+						newTracer.createDealer($("#DealName").val(), $("#DealFFL").val());
+						$("#DealerAddr").attr("placeholder") = newTracer.getDealerAddress;
+					});
 
-			$("#CreateOwner").click(function() {
-				newTracer.createOwner($("#OwnerName").val(), $("#OwnerAge").val());
-				$("#OwnerAddr").attr("placeholder") = newTracer.getOwnerAddress;
-			});
+					$("#CreateOwner").click(function() {
+						newTracer.createOwner($("#OwnerName").val(), $("#OwnerAge").val());
+						$("#OwnerAddr").attr("placeholder") = newTracer.getOwnerAddress;
+					});
 
-			$("#AssetCreate").click(function() {
-				var assetType = $("#AssetType").val();
-				var assetMan = $("#AssetMan").val();
-				var init = $("#Init").val();
-				var assetID = newTracer.createAsset(assetType, assetMan, init);
-				// var assetID = "ololo";
-				console.log(assetID);
+					$("#AssetCreate").click(function() {
+						var assetType = $("#AssetType").val();
+						var assetMan = $("#AssetMan").val();
+						var init = $("#Init").val();
+						var assetID = newTracer.createAsset(assetType, assetMan, init);
+						// var assetID = "ololo";
+						console.log(assetID);
 
-				// $("#AssetUUID").attr("placeholder", assetID);
-				app.UUID = assetID;
-				$("#AssetUUID").html(assetID);
-			});
+						// $("#AssetUUID").attr("placeholder", assetID);
+						app.UUID = assetID;
+						$("#AssetUUID").html(assetID);
+					});
 
-			$("#TransferAsset").click(function() {
-				newTracer.transferAsset($("#TransferTo").val(), $("#TransferAssUUID").val());
-				$("#TransferSuccess").attr("placeholder") = "Transfer of asset complete"
-			});
+					$("#TransferAsset").click(function() {
+						newTracer.transferAsset($("#TransferTo").val(), $("#TransferAssUUID").val());
+						$("#TransferSuccess").attr("placeholder") = "Transfer of asset complete"
+					});
+				})
 		});
 	</script>
 </body>
