@@ -145,8 +145,8 @@
 			} else {
 				web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 			}
-
-			var app = {
+		
+		                var app = {
 				UUID: null
 			}
 
@@ -157,7 +157,7 @@
 				.then(function(data) {
 					var InitializeTracer = web3.eth.contract(data);
 
-					var newTracer = InitializeTracer.at(0x0dcd2f752394c41875e259e00bb44fd505297caf);
+					var newTracer = InitializeTracer.at("0x534be40e669034fdcb5bcd9bcc84b80cc50a65f5", function(err){console.log(err);});
 
 					console.log(newTracer);
 
@@ -180,7 +180,8 @@
 						var assetType = $("#AssetType").val();
 						var assetMan = $("#AssetMan").val();
 						var init = $("#Init").val();
-						var assetID = newTracer.createAsset(assetType, assetMan, init);
+		                                console.log(assetID);
+                                   		var assetID = newTracer.createAsset(assetType, assetMan, init);
 						// var assetID = "ololo";
 						console.log(assetID);
 
