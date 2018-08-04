@@ -14,5 +14,6 @@ Languages: Solidity, Web3js, HTML
 - Andrew Suh @Donnerschlag
 
 ### Learn more about the project
-- Blog post https://medium.com/@set808/leveraging-smart-contracts-for-gun-control-eea8ee9d84f4
+- Blog post by team member Spencer Taylor https://medium.com/@set808/leveraging-smart-contracts-for-gun-control-eea8ee9d84f4
+- Blog post by team member Gregory Dame https://medium.com/@gregdame/privacy-gun-ownership-the-blockchain-96497e88b623
 - Slideshare https://www.slideshare.net/holbertonschool/tracer-smart-contract-solution-for-gun-ownership
