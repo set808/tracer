@@ -12,6 +12,7 @@ Languages: Solidity, Web3js, HTML
 - Derek Kwok @dkwok94
 - Mitali Sengupta @MitaliSengupta
 - Andrew Suh @Donnerschlag
+- Sergii Garkusha @Cu7ious
 
 ### Learn more about the project
 - Blog post by team member Spencer Taylor https://medium.com/@set808/leveraging-smart-contracts-for-gun-control-eea8ee9d84f4
